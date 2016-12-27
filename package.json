@@ -1,0 +1,15 @@
+{
+  "name": "scribblez-database",
+  "version": "0.0.0",
+  "description": "A PostgreSQL database for a simple note-sharing social network.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebinarypenguin/scribblez-database.git"
+  },
+  "author": "Ethan Zimmerman <thebinarypenguin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.12.6",
+    "pg": "^6.1.0"
+  }
+}
