@@ -1,6 +1,6 @@
 {
   "name": "scribblez-database",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A PostgreSQL database for a simple note-sharing social network.",
   "repository": {
     "type": "git",
