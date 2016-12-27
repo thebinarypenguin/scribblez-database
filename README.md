@@ -2,6 +2,8 @@
 
 A PostgreSQL database for a simple note-sharing social network.
 
+[Entity Relationship Diagram](diagram.svg)
+
 ## Installation
 
 1. Install dependencies
@@ -35,8 +37,3 @@ A PostgreSQL database for a simple note-sharing social network.
     ```
     ./knex seed:run
     ```
-
-
-## Diagram
-
-![diagram](diagram.svg)
