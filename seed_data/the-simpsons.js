@@ -1,39 +1,39 @@
 'use strict';
 
-let users         = [];
-let notes         = [];
-let groups        = [];
-let group_members = [];
-let note_grants   = [];
-
-const getUserID = function (realName) {
-  
-  let target = users.find((u) => {
-    return u.real_name === realName;
-  });
-
-  return target.id;
-};
-
-const getGroupID = function (userRealName, groupName) {
-
-  let target = groups.find((g) => {
-    return g.owner_id === getUserID(userRealName) && g.name === groupName;
-  });
-
-  return target.id;
-};
-
-const getNoteID = function (userRealName, bodyContents, visibility) {
-
-  let target = notes.find((n) => {
-    return n.owner_id === getUserID(userRealName) && n.body.includes(bodyContents) && n.visibility === visibility;
-  });
-
-  return target.id;
-};
-
 exports.seed = function(knex, Bluebird) {
+
+  let users         = [];
+  let notes         = [];
+  let groups        = [];
+  let group_members = [];
+  let note_grants   = [];
+
+  const getUserID = function (realName) {
+    
+    let target = users.find((u) => {
+      return u.real_name === realName;
+    });
+
+    return target.id;
+  };
+
+  const getGroupID = function (userRealName, groupName) {
+
+    let target = groups.find((g) => {
+      return g.owner_id === getUserID(userRealName) && g.name === groupName;
+    });
+
+    return target.id;
+  };
+
+  const getNoteID = function (userRealName, bodyContents, visibility) {
+
+    let target = notes.find((n) => {
+      return n.owner_id === getUserID(userRealName) && n.body.includes(bodyContents) && n.visibility === visibility;
+    });
+
+    return target.id;
+  };
 
   return new Bluebird(function (resolve) {
     resolve();
