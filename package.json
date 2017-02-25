@@ -9,6 +9,7 @@
   "author": "Ethan Zimmerman <thebinarypenguin@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "knex": "^0.12.6",
     "pg": "^6.1.0"
   }

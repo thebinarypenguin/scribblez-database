@@ -1,5 +1,7 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
+
 exports.seed = function(knex, Bluebird) {
 
   let users         = [];
@@ -35,30 +37,38 @@ exports.seed = function(knex, Bluebird) {
     return target.id;
   };
 
+  const hash_password = function (password) {
+
+    // Using the synchronous version is acceptable in a small script like this
+    // but using the asynchronous version is necessary in application code
+
+    return bcrypt.hashSync(password, 10);
+  };
+
   return new Bluebird(function (resolve) {
     resolve();
   })
   .then(() => {
 
     users = [
-      { real_name: 'Homer Simpson',  email_address: 'homer@example.com',  username: 'homer',  password_hash: 'fake' },
-      { real_name: 'Marge Simpson',  email_address: 'marge@example.com',  username: 'marge',  password_hash: 'fake' },
-      { real_name: 'Bart Simpson',   email_address: 'bart@example.com',   username: 'bart',   password_hash: 'fake' },
-      { real_name: 'Lisa Simpson',   email_address: 'lisa@example.com',   username: 'lisa',   password_hash: 'fake' },
-      { real_name: 'Maggie Simpson', email_address: 'maggie@example.com', username: 'maggie', password_hash: 'fake' },
+      { real_name: 'Homer Simpson',  email_address: 'homer@example.com',  username: 'homer',  password_hash: hash_password('password') },
+      { real_name: 'Marge Simpson',  email_address: 'marge@example.com',  username: 'marge',  password_hash: hash_password('password') },
+      { real_name: 'Bart Simpson',   email_address: 'bart@example.com',   username: 'bart',   password_hash: hash_password('password') },
+      { real_name: 'Lisa Simpson',   email_address: 'lisa@example.com',   username: 'lisa',   password_hash: hash_password('password') },
+      { real_name: 'Maggie Simpson', email_address: 'maggie@example.com', username: 'maggie', password_hash: hash_password('password') },
 
-      { real_name: 'Patty Bouvier',  email_address: 'patty@example.com',  username: 'patty',  password_hash: 'fake' },
-      { real_name: 'Selma Bouvier',  email_address: 'selma@example.com',  username: 'selma',  password_hash: 'fake' },
+      { real_name: 'Patty Bouvier',  email_address: 'patty@example.com',  username: 'patty',  password_hash: hash_password('password') },
+      { real_name: 'Selma Bouvier',  email_address: 'selma@example.com',  username: 'selma',  password_hash: hash_password('password') },
 
-      { real_name: 'Ned Flanders',   email_address: 'ned@example.com',    username: 'ned',    password_hash: 'fake' },
-      { real_name: 'Maude Flanders', email_address: 'maude@example.com',  username: 'maude',  password_hash: 'fake' },
-      { real_name: 'Rod Flanders',   email_address: 'rod@example.com',    username: 'rod',    password_hash: 'fake' },
-      { real_name: 'Todd Flanders',  email_address: 'todd@example.com',   username: 'todd',   password_hash: 'fake' },
+      { real_name: 'Ned Flanders',   email_address: 'ned@example.com',    username: 'ned',    password_hash: hash_password('password') },
+      { real_name: 'Maude Flanders', email_address: 'maude@example.com',  username: 'maude',  password_hash: hash_password('password') },
+      { real_name: 'Rod Flanders',   email_address: 'rod@example.com',    username: 'rod',    password_hash: hash_password('password') },
+      { real_name: 'Todd Flanders',  email_address: 'todd@example.com',   username: 'todd',   password_hash: hash_password('password') },
 
-      { real_name: 'Lenny Leonard',  email_address: 'lenny@example.com',  username: 'lenny',  password_hash: 'fake' },
-      { real_name: 'Carl Carlson',   email_address: 'carl@example.com',   username: 'carl',   password_hash: 'fake' },
+      { real_name: 'Lenny Leonard',  email_address: 'lenny@example.com',  username: 'lenny',  password_hash: hash_password('password') },
+      { real_name: 'Carl Carlson',   email_address: 'carl@example.com',   username: 'carl',   password_hash: hash_password('password') },
 
-      { real_name: 'Moe Szyslak',    email_address: 'moe@example.com',    username: 'moe',    password_hash: 'fake' },
+      { real_name: 'Moe Szyslak',    email_address: 'moe@example.com',    username: 'moe',    password_hash: hash_password('password') },
     ]
 
     return knex.insert(users, 'id').into('users').then((ids) => {
