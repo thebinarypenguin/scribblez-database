@@ -4,6 +4,10 @@ A PostgreSQL database for a simple note-sharing social network.
 
 [Entity Relationship Diagram](diagram.svg)
 
+## Prerequisites
+
+- Access to a PostgreSQL database
+
 ## Installation
 
 1. Install dependencies
