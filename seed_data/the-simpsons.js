@@ -37,6 +37,16 @@ exports.seed = function(knex, Bluebird) {
     return target.id;
   };
 
+  const getDate = (function () {
+
+    let date = new Date();
+
+    return function () {
+      date.setSeconds(date.getSeconds() + 1);
+      return date.toISOString();
+    };
+  })();
+
   const hashPassword = function (password) {
 
     // Using the synchronous version is acceptable in a small script like this
@@ -207,6 +217,10 @@ exports.seed = function(knex, Bluebird) {
       if (user.real_name === 'Moe Szyslak') {
         // None
       }
+    });
+
+    notes.forEach((note) => {
+      note.created_at = note.updated_at = getDate();
     });
 
     return knex.insert(notes, 'id').into('notes').then((ids) => {
